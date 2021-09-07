@@ -1,30 +1,44 @@
 const notes = require('express').Router();
-const { readFromFile, writeToFile } = require('../helpers/fsUtils');
+const { readFromFile, readAndAppend, readAndDelete } = require('../helpers/fsUtils');
 const { v4: uuidv4 } = require('uuid');
 
-// GET - retrieve existing note data
-notes.get('/', (req, res) =>
-    readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
+// GET - retrieve ALL existing note data & display to notes page & endpoint /api/notes
+notes.get('/notes', (req, res) =>
+    readFromFile('./db/db.json').then((data) => res.send(JSON.parse(data)))
 );
 
-// //POST - for new note
-notes.post('/', (req, res) => {
-    console.log(req.body);
 
-    const { title, text} = req.body; 
+//POST - for new note
+notes.post('/notes', (req, res) => {
 
-    if (req.body){
+    const { title, text } = req.body;
+
+    if (req.body) {
         const newNote = {
             title,
             text,
-            note_id: uuidv4(),
+            id: uuidv4(),
         };
-        
-        writeToFile(newNote, './db/db.json');
+
+        readAndAppend(newNote, './db/db.json');
         res.json(`Note added successfully 🚀`)
     } else {
         res.error('Error in adding note');
-      }
+    }
+});
+
+// DELETE - for old notes
+notes.delete('/notes/:id', (req, res) => {
+    var noteId = req.params.id;
+
+    if (noteId) {
+        readAndDelete(noteId, './db/db.json');
+        res.json('Note deleted successfully🚀');  
+    } else {
+        res.error('Error in deleting note');
+    }
+
+
 });
 
 module.exports = notes;

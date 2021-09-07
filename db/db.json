@@ -1,30 +1,12 @@
 [
     {
-        "title": "Test Title",
-        "text": "Test text"
+        "title": "Testing readAndAppend",
+        "text": "testing this",
+        "id": "2f45dd22-ddd6-467c-924c-4a34874ae5e8"
     },
     {
-        "title": "Slutbags",
-        "text": "Slut Bag text"
-    },
-    {
-        "title": "Slut bag",
-        "text": "slutbag2",
-        "note_id": "ef77f5ef-d723-461c-98ce-f7aa9857b698"
-    },
-    {
-        "title": "slutbag test",
-        "text": "test",
-        "note_id": "f7fecbef-f7f2-4a50-bafa-a9f9eebdf4b5"
-    },
-    {
-        "title": "Testing",
-        "text": "slut",
-        "note_id": "d4c91436-c4b5-4f23-9464-56f416f70161"
-    },
-    {
-        "title": "Testing 2",
-        "text": "testing",
-        "note_id": "14e3acde-0e15-4455-99c4-da6e45c77d79"
+        "title": "Testing Utils",
+        "text": "stuff",
+        "id": "aee38cf6-1fa5-4b77-9ff7-df51b0080adc"
     }
 ]

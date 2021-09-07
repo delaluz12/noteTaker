@@ -1,15 +1,17 @@
+// variables for js routes in file system
 const express = require('express');
-const app = express();
-const path = require('path');
-const api = require('./routes/index.js')
+const html = require('./routes/html')
+const api = require('./routes/notes')
 
+// start app and create port
+const app = express();
 const PORT = process.env.PORT || 3001;
 
 
 // Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use('/api', api)
+app.use(express.urlencoded({ extended: true }));
+
 
 //setup public folder for js, css
 app.use(express.static('public'));
@@ -17,7 +19,9 @@ app.use(express.static('public'));
 //ROUTES
 
 // index and notes html pages routes
-require('./routes/html')(app);
+app.use('/api', api);
+app.use('/', html);
+
 
 
 
